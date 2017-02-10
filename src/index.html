@@ -29,77 +29,83 @@
     <div class="swiper-wrapper">
 
         <div class="milestone intro swiper-slide">
-          <h1>Civic Center Timeline</h1>
-          <%= t.include("partials/_social.html") %>
-          <div class="arrow">
-            <span>Scroll right</span><br>
-            <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+          <div class="item-wrapper">
+            <div class="hed">Civic Center — a century of evolution</div>
+            <div class="intro">Built as part of the city’s celebration of rebirth after the 1906 earthquake, San Francisco’s public square has seen changes over the years — for better and worse.</div>
+            <%= t.include("partials/_social.html") %>
+            <div class="arrow">
+              <span>Scroll right</span><br>
+              <i class="fa fa-long-arrow-right" aria-hidden="true"></i>
+            </div>
           </div>
         </div>
 
         <% csv.civicCenter.forEach(function(t) { %>
+          <% if (t.big) { %>
 
-        <% if (t.class == 'text') { %>
-          <div class="milestone text swiper-slide">
-            <h2><%= t.number %></h2>
-            <p class="score"><%= t.score %></p>
-            <p class="date"><%= t.date %></p>
-            <p><%= t.display_text %></p>
-          </div>
-
-        <% } %>
-
-          <% if (t.class == 'bg') { %>
-          <div class="milestone bg swiper-slide" style="background-image: url(<%= t.img %>); background-size:<%= t.img_size %>; background-position: <%= t.img_position %>">
-            <p><span class="win"><%= t.number %></span><%= t.date %>: <%= t.display_text %></p>
-          </div>
-
-          <% } %>
-
-          <% if (t.class == 'text') { %>
-          <% console.log(t.class) %>
-          <div class="milestone img-text swiper-slide">
-            <h2><%= t.text %></h2>
-            <div class="img">
-              <img src='http://ww2.hdnux.com/photos/54/11/64/<%= t.photo %>+"/3/1000x500.jpg'></img>
+            <div class="milestone bg swiper-slide" style="background-image: url('http://ww2.hdnux.com/photos/54/11/64/<%= t.photo %>/3/1500x1000.jpg'); background-size: 1500px; background-position: center center; background-repeat: no-repeat">
+              <div class="overlay">
+                <div class="year"><%= t.year %></div>
+                <div class="desc yr<%= t.year %>"><%= t.text %></div>
+              </div>
             </div>
-          </div>
+
+          <% } else { %>
+
+            <div class="milestone img-text swiper-slide">
+              <div class="item-wrapper">
+                <div class="item">
+                  <% if (t.photo) { %>
+                      <div class="year"><%= t.year %></div>
+                      <div class="img <%=t.vertical%>">
+                        <img src='http://ww2.hdnux.com/photos/54/11/64/<%= t.photo %>/3/1000x500.jpg'></img>
+                      </div>
+                      <div class="desc"><%= t.text %></div>
+                  <% } else { %>
+                    <div class="year big"><%= t.year %></div>
+                    <div class="desc big"><%= t.text %></div>
+                  <% } %>
+                </div>
+              </div>
+            </div>
 
           <% } %>
 
-         <% }); %>
+        <% }); %>
 
-         <div class="milestone outro swiper-slide">
-         <div class="stories">
-            <p>Related Stories</p>
-           <a href="http://www.sfchronicle.com/collegesports/article/Tara-VanDerveer-s-climb-to-1-000-wins-An-oral-10901515.php">Tara VanDerveer’s climb to 1,000 wins: An oral history</a><br><br>
-           <a href="http://www.sfchronicle.com/collegesports/article/From-humble-start-a-legendary-career-for-10904707.php">From humble start, a legendary career for Stanford’s Vanderveer</a>
+       <div class="milestone outro swiper-slide">
+       <div class="stories">
+         <p>Related Stories</p>
+         <div class="story"><a href="http://www.sfchronicle.com/bayarea/place/article/Powers-that-be-can-revive-Civic-Center-3788197.php">Powers that be can revive Civic Center</a></div>
+         <div class="story"><a href="http://www.sfchronicle.com/bayarea/place/article/15-seconds-that-changed-San-Francisco-Call-it-3235808.php">15 seconds that changed San Francisco</a></div>
+         <div class="story"><a href="http://www.sfchronicle.com/bayarea/place/article/Veterans-Building-restoration-defers-to-original-6522789.php">Veterans Building restoration defers to original vision</a></div>
+         <div class="story"><a href="http://www.sfchronicle.com/bayarea/article/Loma-Prieta-quake-left-legacy-of-repair-renewal-5816995.php">Loma Prieta quake left legacy of repair, renewal</a></div>
+       </div>
 
-         </div>
-          <div class="credits">
-            <div class="group">
-            <p>Credits</p>
-              <div class="entry">Mike Massa<br>
-                <a href="mailto:mmassa@sfchronicle.com">mmassa@sfchronicle.com</a>
-              </div>
-              <div class="entry">Janny Hu<br>
-                <a href="mailto:jhu@sfchronicle.com">jhu@sfchronicle.com</a>
-              </div>
-              <div class="entry">Lucio Villa<br>
-                <a href="mailto:lvilla@sfchronicle.com">lvilla@sfchronicle.com</a>
-              </div>
+        <div class="credits">
+          <div class="group">
+          <p>Credits</p>
+            <div class="entry">John King &bull;
+              <a href="mailto:jking@sfchronicle.com">jking@sfchronicle.com</a> &bull;
+              <a href = "https://twitter.com/johnkingsfchron" target="_blank">@JohnKingSFChron</a>
+            </div>
+            <div class="entry">Bill Van Niekerken &bull;
+              <a href="mailto:bvanniekerken@sfchronicle.com">bvanniekerken@sfchronicle.com</a>
+            </div>
+            <div class="entry">Emma O'Neill &bull;
+              <a href="mailto:eoneill@sfchronicle.com">eoneill@sfchronicle.com</a> &bull;
+              <a href = "https://twitter.com/emmaruthoneill" target="_blank">@emmaruthoneill</a>
             </div>
           </div>
         </div>
+      </div>
 
-         </div>
-         <div class="swiper-pagination"></div>
-          <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div>
+      </div>
+      <div class="swiper-pagination"></div>
+      <div class="swiper-button-next"></div>
+      <div class="swiper-button-prev"></div>
 
     </div>
-
-
 
     <script src="app.js" async></script>
     <%= t.include("partials/_helloSFC.html") %>
